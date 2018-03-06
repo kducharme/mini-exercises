@@ -1,12 +1,18 @@
 // Function needs to accept lower and upper number
 // Generate random number between the 2
 
-function randomNumber(num1, num2) {
-    if (isNaN(num1) || isNaN(num2)) {
+function randomNumber(low, high) {
+    if (isNaN(low) || isNaN(high)) {
         alert("One of the inputs is not a number")
     }
-    let randomNum = Math.floor(Math.random() * (num2 - num1 + 1)) + num1;
+    let randomNum = Math.floor(Math.random() * (high - low + 1)) + low;
     console.log(randomNum)
 }
-randomNumber(5, 20)
-randomNumber(8, 10)
+
+function submitInput() {
+    let low = document.getElementById("input1").value
+    let high = document.getElementById("input2").value
+    randomNumber(parseInt(low), parseInt(high))
+}
+
+document.getElementById("submit-button").addEventListener("click", submitInput)
