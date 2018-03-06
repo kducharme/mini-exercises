@@ -18,7 +18,7 @@ function submitInput() {
 
 function countUntilHigh(low, high) {
     let printCount = low;
-    for (var i = low; i < high; i++) {
+    for (var i = low; i < high - 1; i++) {
         printCount++
         console.log(printCount)
     }
