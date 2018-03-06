@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kyle's Test Page</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="submit-block">
+        <h1>Review album</h1>
+        <h4>Post your review of Backstreet Boy's self-titled album released in September 2003. Let's hear it.</h4>
+        <div id="average-rating"></div>
+        <hr>
+
+          <p class="title">FULL NAME</p>
+          <input value="" type="text" id="userName" placeholder="Enter first name" required>
+
+          <p class="title">RATING</p>
+          <select value="" id="userRating" name="rating" placeholder="Select rating" required>
+              <option value="0" disabled selected>Select your rating</option>
+              <option value="1">1 Star</option>
+              <option value="2">2 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="5">5 Stars</option>
+            </select>
+
+          <p class="title">REVIEW</p>
+          <input class="paragraph" value="" type="text" id="userReview" placeholder="Enter review..." required>
+
+        <button id="submit-button" class="disabled">Submit review</button>
+    </div>
+
+    <div class="all-reviews" id="full-review">
+      <p class="no-reviews">No reviews yet! Post one or check back later.</p>
+    </div>
+
+
+    <script src="app.js"></script>
+  
+</body>
+</html>
