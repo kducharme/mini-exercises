@@ -13,6 +13,15 @@ function submitInput() {
     let low = document.getElementById("input1").value
     let high = document.getElementById("input2").value
     randomNumber(parseInt(low), parseInt(high))
+    countUntilHigh(parseInt(low), parseInt(high))
+}
+
+function countUntilHigh(low, high) {
+    let printCount = low;
+    for (var i = low; i < high; i++) {
+        printCount++
+        console.log(printCount)
+    }
 }
 
 document.getElementById("submit-button").addEventListener("click", submitInput)
