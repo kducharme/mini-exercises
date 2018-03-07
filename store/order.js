@@ -11,11 +11,7 @@ let allProducts = [];
 let printedProducts = ""
 let orderTotal = 0;
 
-// Event Listeners
 let submitButton = document.getElementById("submit-button").addEventListener("click", addProduct) // Creates product
-
-let add = document.getElementById("add-to-cart").addEventListener("click", addToCart) // Adds product to cart
-
 
 // Creates new product and pushes to allProducts array 
 function addProduct() {
@@ -30,7 +26,6 @@ function addProduct() {
     productCount()
     printProduct(product)
     resetFields(productNameEl, productCostEl)
-    addToCart(product)
     console.log(allProducts)
 }
 
@@ -54,19 +49,24 @@ function printProduct(product) {
         printedProducts += `<div class="product-container">
         <p class="product-name">${product.name}</p>
         <p class="product-cost">Amount: $${product.cost}</p>
-        <input type="text" id="quantity" placeholder="Enter quantity">
+        <input type="text" id="quantity-${product.cost}" placeholder="Enter quantity">
         <button id="add-to-cart">Add to cart</button>
         </div>`
     }
     document.getElementById("printed-products").innerHTML = printedProducts
 }
 
-// Adds product to cart
-function addToCart(product) {
-    console.log(${product.cost})
-}
+// Extracts cost from 
+document.addEventListener("click", function (e) {
+    let productCost = e.target.id;
+    if (productCost.startsWith('quantity-')) {
+        let cost = productCost.split("quantity-");
+        cost = parseInt(cost.splice(1,2))
+    }
+    return cost;
+})
 
-// function cartTotal(product) {
-//     orderTotal += product.cost
-//     console.log(cartTotal)
-// }
+// Calculates total cost
+function totalCost() {
+    
+}
