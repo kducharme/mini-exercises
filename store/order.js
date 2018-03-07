@@ -62,11 +62,11 @@ document.addEventListener("click", function (e) {
     if (productCost.startsWith('quantity-')) {
         let cost = productCost.split("quantity-");
         cost = parseInt(cost.splice(1,2))
+        console.log(cost)
     }
-    return cost;
 })
 
 // Calculates total cost
 function totalCost() {
-    
+
 }
