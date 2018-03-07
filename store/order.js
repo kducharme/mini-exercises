@@ -26,7 +26,6 @@ function addProduct() {
     productCount()
     printProduct(product)
     resetFields(productNameEl, productCostEl)
-    console.log(allProducts)
 }
 
 // Resets fields once form is submitted
@@ -48,25 +47,41 @@ function printProduct(product) {
     for (var i = 0; i < 1; i++) {
         printedProducts += `<div class="product-container">
         <p class="product-name">${product.name}</p>
-        <p class="product-cost">Amount: $${product.cost}</p>
-        <input type="text" id="quantity-${product.cost}" placeholder="Enter quantity">
+        <p class="product-cost" id="product-cost">Amount: $${product.cost}</p>
+        <input type="text" id="quantity-order" placeholder="Enter quantity">
         <button id="add-to-cart">Add to cart</button>
         </div>`
     }
     document.getElementById("printed-products").innerHTML = printedProducts
 }
 
-// Extracts cost from 
+// Extracts cost & amount from input box
+
 document.addEventListener("click", function (e) {
-    let productCost = e.target.id;
-    if (productCost.startsWith('quantity-')) {
-        let cost = productCost.split("quantity-");
-        cost = parseInt(cost.splice(1,2))
-        console.log(cost)
+    let orderQuantity = e.target.id;
+
+    if (orderQuantity.startsWith('add-')) {
+        let quantity = parseInt(document.getElementById("quantity-order").value)
+        let cost = parseInt(document.getElementById("product-cost").innerHTML)
+
+        totalCost(quantity, cost)
+
+        console.log("quantity: " + quantity)
+        console.log("cost: " + cost)
     }
 })
 
-// Calculates total cost
-function totalCost() {
+// document.addEventListener("click", function (e) {
+//     let productCost = e.target.id;
+//     if (productCost.startsWith('product-')) {
+//         let cost = productCost.split("product-");
+//         cost = parseInt(cost.splice(1,2))
+//         console.log(cost)
+//     }
+// })
 
+
+// Calculates total cost
+function totalCost(quantity, cost) {
+    let totalCost = quantity * cost
 }
