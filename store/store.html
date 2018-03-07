@@ -6,17 +6,33 @@
 </head>
 
 <body class="container">
+  <div class="actions">
+    <div class="add-product">
+      <h1>Add new product</h1>
+      <p class="title">Product name</p>
+      <input value="" type="text" id="name" placeholder="Enter number" required>
 
-  <div class="add-product">
-    <p class="title">Product name</p>
-    <input value="" type="text" id="name" placeholder="Enter number" required>
+      <p class="title">Cost</p>
+      <input class="paragraph" value="" type="text" id="cost" placeholder="Enter number" required>
 
-    <p class="title">Cost</p>
-    <input class="paragraph" value="" type="text" id="cost" placeholder="Enter number" required>
-    
-    <button id="submit-button">Submit</button>
+      <button id="submit-button">Submit</button>
+    </div>
 
+    <div class="cart">
+      <h1>Your cart</h1>
+      <hr>
+      <div class="cart-details">
+        <p class="cart-info">Total products:<span id="total-products"></span></p>
+        <p class="cart-info">State Tax: <span id="total-tax"></span></p>
+        <p class="cart-info">Shipping: <span id="total-shipping"></span></p>
+        <p class="cart-total">Grand Total: <span id="total-shipping"></span></p>
+    </div>
+      
+      <div id="cart-products"></div>
+    </div>
   </div>
+
+  <div id="printed-products"></div>
 
   <script src="order.js"></script>
 
