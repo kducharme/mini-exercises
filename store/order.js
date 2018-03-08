@@ -8,23 +8,37 @@
 // 8. If a user's total order is more than $50, shipping is free
 
 let allProducts = [];
+let allOrders = [];
 let printedProducts = ""
 let orderTotal = 0;
 
-let submitButton = document.getElementById("submit-button").addEventListener("click", addProduct) // Creates product
+// Starts process of creating new product after form submitted
+let submitButton = document.getElementById("submit-button").addEventListener("click", addProduct)
+
+
+// Product template
+function Product(name, cost) {
+    this.name = name;
+    this.cost = cost;
+}
+
+// Order template
+function Order(name, cost, quantity) {
+    this.name = name;
+    this.cost = cost;
+    this.quantity = quantity;
+}
 
 // Creates new product and pushes to allProducts array 
 function addProduct() {
     let productNameEl = document.getElementById("name")
     let productCostEl = document.getElementById("cost")
 
-    let product = {
-        name: productNameEl.value,
-        cost: parseInt(productCostEl.value)
-    }
-    allProducts.push(product)
-    productCount()
-    printProduct(product)
+    newProduct = new Product(productNameEl.value, productCostEl.value)
+    allProducts.push(newProduct)
+
+    maxProducts()
+    printProduct(newProduct)
     resetFields(productNameEl, productCostEl)
 }
 
@@ -35,7 +49,7 @@ function resetFields(f1, f2) {
 }
 
 // Disables button when user has submitted 3 products
-function productCount() {
+function maxProducts() {
     if (allProducts.length === 3) {
         document.getElementById("submit-button").disabled = true
         document.getElementById("submit-button").classList.add('disabled');
@@ -48,29 +62,27 @@ function printProduct(product) {
         printedProducts += `<div class="product-container">
         <p class="product-name">${product.name}</p>
         <p class="product-cost" value="${product.cost}" id="product-cost">Amount: $${product.cost}</p>
-        <input type="text" id="quantity-order" placeholder="Enter quantity">
+        <input type="text" id="quantity" placeholder="Enter quantity">
         <button id="add-to-cart">Add to cart</button>
         </div>`
     }
     document.getElementById("printed-products").innerHTML = printedProducts
+    allProducts[0]
 }
-
-// Extracts cost & amount from input box
 
 document.addEventListener("click", function (e) {
     let orderQuantity = e.target.id;
-
+    
     if (orderQuantity.startsWith('add-')) {
-        let quantity = parseInt(document.getElementById("quantity-order").value)
-        let costEl = document.getElementById("product-cost")
-        let cost = parseInt(costEl.getAttribute("value"))
-
-        totalCost(quantity,cost)
+        let quantity = document.getElementById("quantity").value
+        console.log(quantity)
+        createOrder(quantity)
     }
 })
 
-// Calculates total cost
-function totalCost(quantity, cost) {
-    let totalCost = quantity * cost
-    console.log(totalCost)
+function createOrder(quantity) {
+        newOrder = new Order(quantity)
+        allProducts.push(newProduct)
+    console.log(Order)
 }
+
