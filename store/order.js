@@ -47,7 +47,7 @@ function printProduct(product) {
     for (var i = 0; i < 1; i++) {
         printedProducts += `<div class="product-container">
         <p class="product-name">${product.name}</p>
-        <p class="product-cost" id="product-cost">Amount: $${product.cost}</p>
+        <p class="product-cost" value="${product.cost}" id="product-cost">Amount: $${product.cost}</p>
         <input type="text" id="quantity-order" placeholder="Enter quantity">
         <button id="add-to-cart">Add to cart</button>
         </div>`
@@ -62,26 +62,15 @@ document.addEventListener("click", function (e) {
 
     if (orderQuantity.startsWith('add-')) {
         let quantity = parseInt(document.getElementById("quantity-order").value)
-        let cost = parseInt(document.getElementById("product-cost").innerHTML)
+        let costEl = document.getElementById("product-cost")
+        let cost = parseInt(costEl.getAttribute("value"))
 
-        totalCost(quantity, cost)
-
-        console.log("quantity: " + quantity)
-        console.log("cost: " + cost)
+        totalCost(quantity,cost)
     }
 })
-
-// document.addEventListener("click", function (e) {
-//     let productCost = e.target.id;
-//     if (productCost.startsWith('product-')) {
-//         let cost = productCost.split("product-");
-//         cost = parseInt(cost.splice(1,2))
-//         console.log(cost)
-//     }
-// })
-
 
 // Calculates total cost
 function totalCost(quantity, cost) {
     let totalCost = quantity * cost
+    console.log(totalCost)
 }
