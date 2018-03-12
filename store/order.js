@@ -11,6 +11,7 @@
 let allProducts = [];
 let allOrders = [];
 let printedProducts = ""
+let addedProducts = ""
 let orderTotal = 0;
 
 // Starts process of creating new product after form submitted
@@ -60,13 +61,25 @@ function maxProducts() {
 function printProduct(product) {
     for (var i = 0; i < 1; i++) {
         printedProducts += `<div class="product-container">
-        <p class="name-product">${product.name}</p>
+        <p class="name-product" value="${product.name}" id="prod-name">${product.name}</p>
         <p class="product-cost" value="${product.cost}" id="product-cost">Price: $${product.cost}</p>
         <input type="text" id="quantity" placeholder="Enter quantity">
         <button id="add-to-cart">Add to cart</button>
         </div>`
-    }
+    }  
     document.getElementById("printed-products").innerHTML = printedProducts
+}
+
+// Shows product in cart area
+function addProductToCart(amount) {
+    let quantity = amount
+    let product = document.getElementById("prod-name").getAttribute("value")
+
+    addedProducts = `<div class="added-product">
+    <p class="cart-name">${product}</p>
+    <p class="cart-quantity">(${amount} units)</p>`
+
+    document.getElementById("added-product").innerHTML = addedProducts
 }
 
 // Collects quantity and cost of product and sends to createOrder function
@@ -77,32 +90,34 @@ document.addEventListener("click", function (e) {
         let quantity = parseInt(document.getElementById("quantity").value)
         let cost = parseInt(document.getElementById("product-cost").getAttribute("value"))
         
+        createOrder(cost, quantity)
+        addProductToCart(quantity)
         newOrder = new Order()
-        createOrder(quantity, cost)
     }
 })
 
 // Creates new order when user hits 'add to cart'
-function createOrder(quantity, cost) {
+function createOrder(cost, quantity) {
         let newOrder = new Order(cost, quantity)
-        let orderTotal = cost * quantity
+        let total = cost * quantity
         allOrders.push(newOrder)
-        document.getElementById("total-products").innerHTML = "$" + orderTotal
-        calcShipping(orderTotal)
-        calcTax(orderTotal)
-        totalOrder(orderTotal)
+        document.getElementById("total-products").innerHTML = "$" + total
+
+        return total;
 }
 
 // Calculates shipping cost based on order size
-function calcShipping(orderTotal){ 
+function calcShipping(total){ 
+    let orderTotal = total
+    console.log(orderTotal)
     let shipping = "";
-    if (orderTotal <= 50) {
+    if (createOrder() <= 50) {
         shipping = 10
     }
     else {
         shipping = 0;
     }
-    return shipping;
+    console.log(shipping)
 }
 
 // Calculates tax cost based on order size

@@ -40,6 +40,27 @@ h1{
     border: 1px solid #EDEDED;
 }
 
+.added-product {
+    display: flex;
+    width: 100%;
+}
+
+.cart-name {
+    padding: 0px 5px 0px 0px;
+    color: #1D2936;
+    font-family: 'lato';
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.cart-quantity{
+    padding: 0px;
+    color: #828B96;
+    font-family: 'lato';
+    font-size: 14px;
+    font-weight: 400;
+}
+
 .cart{
     background-color: white;
     padding: 0px 30px 30px 30px;
@@ -90,7 +111,13 @@ h1{
 }
 
 .cart-details{
-    padding: 20px 0px 0px 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.added-placeholder{
+    margin: 0px;
+    height: 40px;
 }
 
 /* Printing products to DOM */
