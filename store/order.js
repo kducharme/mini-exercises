@@ -49,7 +49,7 @@ function resetFields(f1, f2) {
     f2.value = ""
 }
 
-// Disables button when user has submitted 3 products
+// Disables button when user has submitted 1 product
 function maxProducts() {
     if (allProducts.length === 1) {
         document.getElementById("submit-button").disabled = true
@@ -66,7 +66,7 @@ function printProduct(product) {
         <input type="text" id="quantity" placeholder="Enter quantity">
         <button id="add-to-cart">Add to cart</button>
         </div>`
-    }  
+    }
     document.getElementById("printed-products").innerHTML = printedProducts
 }
 
@@ -85,50 +85,69 @@ function addProductToCart(amount) {
 // Collects quantity and cost of product and sends to createOrder function
 document.addEventListener("click", function (e) {
     let orderQuantity = e.target.id;
-    
+
     if (orderQuantity.startsWith('add-')) {
         let quantity = parseInt(document.getElementById("quantity").value)
         let cost = parseInt(document.getElementById("product-cost").getAttribute("value"))
-        
+
         createOrder(cost, quantity)
-        addProductToCart(quantity)
+        clearQuantity(quantity)
+
         newOrder = new Order()
     }
 })
 
+// Clears quantity field after added to cart
+function clearQuantity(quantity) {
+    quantity = document.getElementById("quantity").value = ""
+}
+
 // Creates new order when user hits 'add to cart'
 function createOrder(cost, quantity) {
-        let newOrder = new Order(cost, quantity)
-        let total = cost * quantity
+    let newOrder = new Order(cost, quantity)
+    let total = cost * quantity
+
+    if (allOrders.length === 0) {
         allOrders.push(newOrder)
         document.getElementById("total-products").innerHTML = "$" + total
+        calcShipping(total);
+        addProductToCart(quantity)
+        calcTax(total);
+    }
+    else {
+        let update = prompt("This item is already in your cart. Would you like to update the quantity?")
+        upate = update.toUpperCase
+        console.log(update)
+        if (update === "yes") {
 
-        return total;
+        }
+
+    }
 }
 
 // Calculates shipping cost based on order size
-function calcShipping(total){ 
+function calcShipping(total) {
     let orderTotal = total
-    console.log(orderTotal)
-    let shipping = "";
-    if (createOrder() <= 50) {
+    let shipping = 0;
+
+    if (orderTotal <= 50) {
         shipping = 10
     }
     else {
         shipping = 0;
     }
-    console.log(shipping)
+    document.getElementById("total-shipping").innerHTML = "$" + shipping
 }
 
 // Calculates tax cost based on order size
-function calcTax(orderTotal){
-    let tax = orderTotal * .05;
-    return tax;
+function calcTax(total) {
+    let tax = total * .05;
+    document.getElementById("total-tax").innerHTML = "$" + tax
 }
 
-function totalOrder(orderTotal){
+function totalOrder() {
+    let tax = document.getElementById("total-tax").textContent
+    console.log(tax)
     let shipping = calcShipping();
     let tax = calcTax();
-    console.log(shipping)
 }
-
