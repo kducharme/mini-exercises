@@ -12,7 +12,6 @@ let allProducts = [];
 let allOrders = [];
 let printedProducts = ""
 let addedProducts = ""
-let orderTotal = 0;
 
 // Starts process of creating new product after form submitted
 let submitButton = document.getElementById("submit-button").addEventListener("click", addProduct)
@@ -91,8 +90,7 @@ document.addEventListener("click", function (e) {
         let cost = parseInt(document.getElementById("product-cost").getAttribute("value"))
 
         createOrder(cost, quantity)
-        clearQuantity(quantity)
-
+        clearQuantity(quantity)        
         newOrder = new Order()
     }
 })
@@ -110,44 +108,52 @@ function createOrder(cost, quantity) {
     if (allOrders.length === 0) {
         allOrders.push(newOrder)
         document.getElementById("total-products").innerHTML = "$" + total
-        calcShipping(total);
         addProductToCart(quantity)
-        calcTax(total);
     }
     else {
         let update = prompt("This item is already in your cart. Would you like to update the quantity?")
-        upate = update.toUpperCase
-        console.log(update)
+        update = update.toUpperCase
+    
         if (update === "yes") {
 
         }
-
     }
+    orderTotal(total)
+}
+
+// Calculates order total and posts all order details
+function orderTotal(total) {
+    let productCost = total
+    let tax = calcTax(productCost);
+    let shipping = calcShipping(productCost);
+
+    let orderTotal = tax + shipping + productCost;
+
+    document.getElementById("total-tax").innerHTML = "$" + tax
+    document.getElementById("total-shipping").innerHTML = "$" + shipping
+    document.getElementById("total-order").innerHTML = "$" + orderTotal
+}
+
+// Calculates tax cost based on order size
+function calcTax(productCost){
+    let total = productCost;
+    let taxRate = .05;
+    let totalTax = total * taxRate;
+
+    return totalTax;
 }
 
 // Calculates shipping cost based on order size
-function calcShipping(total) {
-    let orderTotal = total
-    let shipping = 0;
+function calcShipping(productCost) {
+    let total = productCost;
+    let shipping;
 
-    if (orderTotal <= 50) {
+    if (total <= 50) {
         shipping = 10
     }
     else {
         shipping = 0;
     }
-    document.getElementById("total-shipping").innerHTML = "$" + shipping
-}
-
-// Calculates tax cost based on order size
-function calcTax(total) {
-    let tax = total * .05;
-    document.getElementById("total-tax").innerHTML = "$" + tax
-}
-
-function totalOrder() {
-    let tax = document.getElementById("total-tax").textContent
-    console.log(tax)
-    let shipping = calcShipping();
-    let tax = calcTax();
+    
+    return shipping;
 }
