@@ -1,0 +1,102 @@
+/* Global styles */
+
+body {
+    background-color: #F9FAFE;
+    display: flex;
+    padding: 0 10% 0 10%;
+}
+
+input {
+    height: 35px;
+    width: 200px;
+}
+
+button {
+    height: 35px;
+    width: 100px;
+    color: white;
+    background-color: #5771CD;
+    border: none;
+    margin-top: 30px;
+}
+
+h1 {
+    color: #1D2936;
+    font-family: 'lato';
+    font-size: 18px;
+    font-weight: 800;
+    padding: 30px 0px 10px 0px;
+    line-height: 0px;
+}
+
+/* Create product & add to card */
+
+.input-field {
+    border: 1px solid #EDEDED;
+    font-size: 12px;
+    padding: 5px 5px 2px 5px;
+}
+
+textarea {
+    height: 50px;
+    width: 200px;
+    padding-top: 10px;
+}
+
+.add-note{
+    background-color: white;
+    padding: 0px 30px 30px 30px;
+    width: 200px;
+    height: 350px;
+    justify-content: center;
+    border: 1px solid #EDEDED;
+}
+
+.title {
+    font-size: 12px;
+    font-family: 'lato';
+    font-weight: 800;
+    padding: 20px 0px 0px 0px;
+    color: #A6A6A6;
+}
+
+.disabled {
+    opacity: .3;
+}
+
+
+/* Printing products to DOM */
+
+.note-container {
+    background-color: white;
+    padding: 0px 25px 15px 20px;
+    margin: 0px 0px 20px 20px;
+    width: 200px;
+    border: 1px solid #EDEDED;
+}
+
+.note-title {
+    font-size: 16px;
+    font-family: 'lato';
+    font-weight: 800;
+    padding: 20px 0px 0px 0px;
+}
+
+.details {
+    font-size: 13px;
+    font-family: 'lato';
+    font-weight: 400;
+    padding: 00px 0px 10px 0px;
+}
+
+/* Conditional stuff */
+
+.transparent {
+    opacity: 0;
+    height: 100px;
+}
+
+.solid {
+    opacity: 1;
+    height: 100px;
+}
