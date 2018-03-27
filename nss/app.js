@@ -8,6 +8,12 @@ function addExcitement() {
     for (let i = 0; i < sentenceWords.length; i++) {
         if (i % 3 === 2) {
             printWords += " " + sentenceWords[i] + "!";
+            if (i % 2 == 1) {
+                printWords += "!";
+            }
+            else if (i / 8 == 1) {
+                printWords += "!!";
+            }
         }
         else {
             printWords += " " + sentenceWords[i];
